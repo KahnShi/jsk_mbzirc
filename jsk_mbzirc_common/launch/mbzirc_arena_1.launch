@@ -3,7 +3,7 @@
   <arg name="debug" default="false"/>
   <arg name="gui" default="true"  />
   <arg name="headless" default="false"/>
-
+  <arg name="stop_truck" default="false"/>
 
   <include file="$(find jsk_mbzirc_common)/launch/mbzirc_arena.launch" >
     <arg name="paused" default="$(arg paused)"/>
@@ -14,6 +14,10 @@
   </include>
 
   <param name="truck/robot_description" command="$(find xacro)/xacro '$(find jsk_mbzirc_common)/urdf/truck.urdf.xacro'" />
+
+  <group if="$(arg stop_truck)" >
+    <node pkg="jsk_mbzirc_common" type="stop_truck_flag.py" name="stop_truck_flag"/>
+  </group>
 
   <group ns="truck/ground_truth">
     <node name="spawn_robot" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
@@ -26,7 +30,7 @@
       <param name="odom_frame_id"    value="/truck/ground_truth/base_link"/>
     </node>
 
-    <node pkg="robot_state_publisher" type="robot_state_publisher" name="trcuk_state_publisher" output="screen" >
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="truck_state_publisher" output="screen" >
       <param name="tf_prefix" type="string" value="truck/ground_truth" />
       <param name="publish_frequency" type="double" value="50.0" />
     </node>
