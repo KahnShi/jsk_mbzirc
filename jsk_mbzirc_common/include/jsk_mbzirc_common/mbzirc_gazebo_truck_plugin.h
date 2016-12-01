@@ -44,6 +44,7 @@
 #include <ros/ros.h>
 #include <std_msgs/String.h>
 #include <string>
+#include <std_msgs/Bool.h>
 
 namespace gazebo
 {
@@ -56,7 +57,7 @@ public:
 
   // http://www.mbzirc.com/assets/files/MBZIRC-Challenge-Description-Document-V2-7SEP2015.pdf
   static const float CIRCLE_RADIUS = 20.0;
-  static const float CIRCLE_DISTANCE = 55.0;
+  static const float CIRCLE_DISTANCE = 56.56;
 
 protected:
   virtual void Load(physics::ModelPtr _model, sdf::ElementPtr _sdf);
@@ -82,6 +83,10 @@ private:
   double traversed_;
   common::Time last_time_;
   bool terminated_;
+  // Singal that truck is moving or not in the start point
+  ros::Subscriber sub_truck_stop_flag_;
+  bool truck_stop_flag_;
+  void truckStopFlagCallback(const std_msgs::Bool stop_flag);
 };
 
 }  // namespace gazebo

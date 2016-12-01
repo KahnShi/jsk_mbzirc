@@ -90,6 +90,10 @@ void GazeboTruck::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
   pub_time_ = node_handle_->advertise<std_msgs::String>("/remaining_time", 1);
 
   update_connection_ = event::Events::ConnectWorldUpdateBegin(boost::bind(&GazeboTruck::Update, this));
+
+  // Singal that truck is moving as default state
+  truck_stop_flag_ = false;
+  sub_truck_stop_flag_ = node_handle_->subscribe<std_msgs::Bool>("/truck_stop_flag", 1, &GazeboTruck::truckStopFlagCallback, this);
 }
 
 
@@ -113,23 +117,30 @@ void GazeboTruck::Update()
   double l2 = 2*CIRCLE_RADIUS*(M_PI-theta);
   double all_l = l1 + l2 + l1 + l2;
 
-  // static const float VELOCITY = 4.16667;  //  4.16667 m/sec = 15 km/h, 2.77778 m/sec = 10 km/h, 1.38889 = 5 km/h
-  if ( current_time.Double() < 6*60 )
+  if (!truck_stop_flag_)
     {
-      traversed_ += 4.16667 * delta_time;
-    }
-  else if ( current_time.Double() < 12*60 )
-    {
-      traversed_ += 2.77778 * delta_time;
-    }
-  else if ( current_time.Double() < 20*60 )
-    {
-      traversed_ += 1.38889 * delta_time;
+      // static const float VELOCITY = 4.16667;  //  4.16667 m/sec = 15 km/h, 2.77778 m/sec = 10 km/h, 1.38889 = 5 km/h
+      if ( current_time.Double() < 6*60 )
+        {
+          traversed_ += 4.16667 * delta_time;
+        }
+      else if ( current_time.Double() < 12*60 )
+        {
+          traversed_ += 2.77778 * delta_time;
+        }
+      else if ( current_time.Double() < 20*60 )
+        {
+          traversed_ += 1.38889 * delta_time;
+        }
+      else
+        {
+          ROS_FATAL("Time's up, Your challenge was over");
+          terminated_ = true;
+        }
     }
   else
     {
-      ROS_FATAL("Time's up, Your challenge was over");
-      terminated_ = true;
+      traversed_ = 0;
     }
   double l = fmod(traversed_, all_l);
   ROS_DEBUG_STREAM("time: " << current_time.Double() << ", traversed: " << traversed_);
@@ -206,6 +217,12 @@ void GazeboTruck::Update()
 void GazeboTruck::Reset()
 {
   state_stamp_ = ros::Time();
+}
+
+// Get signal from subscriber
+void GazeboTruck::truckStopFlagCallback(const std_msgs::Bool stop_flag)
+{
+  truck_stop_flag_ = stop_flag.data;
 }
 
 // Register this plugin with the simulator
