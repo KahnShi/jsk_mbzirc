@@ -167,8 +167,8 @@ void GazeboTruck::Update()
   // check score
   // void Entity::GetNearestEntityBelow(double &_distBelow,  std::string &_entityName)
 
-  gazebo::physics::RayShapePtr rayShape = boost::dynamic_pointer_cast<gazebo::physics::RayShape>(
-    world_->GetPhysicsEngine()->CreateShape("ray", gazebo::physics::CollisionPtr()));
+  //gazebo::physics::RayShapePtr rayShape = boost::dynamic_pointer_cast<gazebo::physics::RayShape>(
+  //  world_->GetPhysicsEngine()->CreateShape("ray", gazebo::physics::CollisionPtr()));
 
   double distAbove;
   std::string entityName;
@@ -181,8 +181,8 @@ void GazeboTruck::Update()
   math::Vector3 end = start;
   start.z = box.max.z + 0.00001;
   end.z += 1000;
-  rayShape->SetPoints(start, end);
-  rayShape->GetIntersection(distAbove, entityName);
+  //rayShape->SetPoints(start, end);
+  //rayShape->GetIntersection(distAbove, entityName);
   distAbove -= 0.00001;
 
   // publish remain time
