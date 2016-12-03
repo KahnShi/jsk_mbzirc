@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<robot name="uav" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="quadrotor" xmlns:xacro="http://ros.org/wiki/xacro">
 
   <xacro:property name="M_PI" value="3.1415926535897931" />
 
@@ -45,11 +45,12 @@
 
   <!-- Custom sensors settings -->
 
+  <!-- 16.12.03 Remove Hokuyo sensor, because it maybe cause the program crash down, and also no use now.  -->
   <!-- Hokuyo UTM-30LX mounted on the quadrotor body -->
-  <xacro:include filename="$(find hector_sensors_description)/urdf/hokuyo_utm30lx.urdf.xacro" />
-  <xacro:hokuyo_utm30lx name="laser0" parent="base_link" ros_topic="scan" update_rate="40" ray_count="1081" min_angle="-135" max_angle="135">
-    <origin xyz="0.0 0.0 0.097" rpy="0 0 0"/>
-  </xacro:hokuyo_utm30lx>
+  <!-- <xacro:include filename="$(find hector_sensors_description)/urdf/hokuyo_utm30lx.urdf.xacro" /> -->
+  <!-- <xacro:hokuyo_utm30lx name="laser0" parent="base_link" ros_topic="scan" update_rate="40" ray_count="1081" min_angle="-135" max_angle="135"> -->
+  <!--   <origin xyz="0.0 0.0 0.097" rpy="0 0 0"/> -->
+  <!-- </xacro:hokuyo_utm30lx> -->
 
   <!-- Downward facing camera -->
   <xacro:include filename="$(find hector_sensors_description)/urdf/generic_camera.urdf.xacro" />

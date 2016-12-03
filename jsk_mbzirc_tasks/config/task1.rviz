@@ -27,7 +27,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: LaserScan
+    SyncSource: Camera
 Visualization Manager:
   Class: ""
   Displays:
@@ -72,11 +72,6 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        laser0_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         sonar_link:
           Alpha: 1
           Show Axes: false
@@ -96,27 +91,6 @@ Visualization Manager:
         Value: true
       Axis: Z
       Channel Name: intensity
-      Class: rviz/LaserScan
-      Color: 255; 255; 255
-      Color Transformer: Intensity
-      Decay Time: 0.1
-      Enabled: true
-      Invert Rainbow: false
-      Max Color: 255; 255; 255
-      Max Intensity: 0
-      Min Color: 0; 0; 0
-      Min Intensity: 0
-      Name: LaserScan
-      Position Transformer: XYZ
-      Queue Size: 10
-      Selectable: true
-      Size (Pixels): 3
-      Size (m): 0.01
-      Style: Flat Squares
-      Topic: /scan
-      Use Fixed Frame: true
-      Use rainbow: true
-      Value: true
     - Class: rviz/Camera
       Enabled: true
       Image Rendering: background and overlay
@@ -128,7 +102,6 @@ Visualization Manager:
       Value: true
       Visibility:
         Grid: true
-        LaserScan: true
         OverlayText: true
         RobotModel: true
         Value: true
