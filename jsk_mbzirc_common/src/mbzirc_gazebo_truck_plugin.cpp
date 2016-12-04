@@ -140,7 +140,7 @@ void GazeboTruck::Update()
     }
   else
     {
-      traversed_ = 0;
+      traversed_ = l1 / 2;
     }
   double l = fmod(traversed_, all_l);
   ROS_DEBUG_STREAM("time: " << current_time.Double() << ", traversed: " << traversed_);
