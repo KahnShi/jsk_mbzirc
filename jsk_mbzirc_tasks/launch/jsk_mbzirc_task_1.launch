@@ -6,13 +6,14 @@
   <arg name="teleopUGV" default="false"/>
   <arg name="use_ground_truth" default="false" />
   <arg name="middle_test" default="true" />
+  <arg name="stop_truck" default="false"/>
 
   <include file="$(find jsk_mbzirc_common)/launch/mbzirc_arena_1.launch" >
     <arg name="paused" default="$(arg paused)"/>
     <arg name="debug" default="$(arg debug)"/>
     <arg name="gui" value="$(arg gui)" />
     <arg name="headless" default="$(arg headless)"/>
-    <!--arg name="stop_truck" default="$(arg middle_test)"/-->
+    <arg name="stop_truck" default="$(arg stop_truck)"/>
   </include>
 
   <arg name="cheat" default="false" />

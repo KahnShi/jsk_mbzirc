@@ -13,7 +13,7 @@ find_package(gazebo REQUIRED)
 ## catkin specific configuration ##
 ###################################
 catkin_package(
-    CATKIN_DEPENDS
+  CATKIN_DEPENDS
 )
 
 include_directories(include ${catkin_INCLUDE_DIRS} ${GAZEBO_INCLUDE_DIRS})
