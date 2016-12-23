@@ -19,6 +19,9 @@
     <node pkg="jsk_mbzirc_common" type="stop_truck_flag.py" name="stop_truck_flag"/>
   </group>
 
+  <!-- visualization traffic lane -->
+  <node pkg="jsk_mbzirc_common" type="traffic_lane_visualization.py" name="visualize_lane" />
+
   <group ns="truck/ground_truth">
     <node name="spawn_robot" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
           args=" -urdf -model truck -param /truck/robot_description" />
