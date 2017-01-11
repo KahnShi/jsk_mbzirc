@@ -59,7 +59,7 @@ void GazeboTruck::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
 
   // Default, start from left up corner
   //traversed_ = 0;
-  // Changed to start from a little
+  // Changed to start from a little far away position, in order to wait for uav taking off
   traversed_ = -CIRCLE_DISTANCE*0.707/2;
   last_time_ = world_->GetSimTime();
   terminated_ = false;
