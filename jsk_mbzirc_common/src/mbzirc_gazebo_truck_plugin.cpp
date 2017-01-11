@@ -57,7 +57,10 @@ void GazeboTruck::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
   link_name_ = link_->GetName();
   namespace_.clear();
 
-  traversed_ = 0;
+  // Default, start from left up corner
+  //traversed_ = 0;
+  // Changed to start from a little
+  traversed_ = -CIRCLE_DISTANCE*0.707/2;
   last_time_ = world_->GetSimTime();
   terminated_ = false;
 
