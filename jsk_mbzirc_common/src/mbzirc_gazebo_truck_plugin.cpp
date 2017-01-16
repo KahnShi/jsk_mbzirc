@@ -125,7 +125,8 @@ void GazeboTruck::Update()
       // static const float VELOCITY = 4.16667;  //  4.16667 m/sec = 15 km/h, 2.77778 m/sec = 10 km/h, 1.38889 = 5 km/h
       if ( current_time.Double() < 6*60 )
         {
-          traversed_ += 4.16667 * delta_time;
+          // traversed_ += 4.16667 * delta_time;
+          traversed_ += 4.17 * delta_time;
         }
       else if ( current_time.Double() < 12*60 )
         {
